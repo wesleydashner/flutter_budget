@@ -38,7 +38,7 @@ class _AccountCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Text(
-                account.name,
+                account.name.toLowerCase(),
                 style: TextStyle(fontSize: 16),
               ),
             ],
@@ -96,32 +96,33 @@ class _AccountCard extends StatelessWidget {
         TextEditingController(text: '0.00');
 
     return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(title),
-            content: TextField(
-              autofocus: true,
-              keyboardType: TextInputType.number,
-              controller: textEditingController,
-              inputFormatters: <TextInputFormatter>[MoneyTextInputFormatter()],
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: TextField(
+            autofocus: true,
+            keyboardType: TextInputType.number,
+            controller: textEditingController,
+            inputFormatters: <TextInputFormatter>[MoneyTextInputFormatter()],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('cancel'),
+              onPressed: () {
+                Navigator.of(context).pop(null);
+              },
             ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('cancel'),
-                onPressed: () {
-                  Navigator.of(context).pop(null);
-                },
-              ),
-              FlatButton(
-                child: Text(title),
-                onPressed: () {
-                  Navigator.of(context)
-                      .pop(textEditingController.text.toString());
-                },
-              )
-            ],
-          );
-        });
+            FlatButton(
+              child: Text(title),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(textEditingController.text.toString());
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 }

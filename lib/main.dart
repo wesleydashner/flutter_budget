@@ -10,6 +10,7 @@ class BudgetApp extends StatelessWidget {
       title: 'Budget',
       theme: ThemeData(
         primaryColor: Colors.blue,
+        secondaryHeaderColor: Colors.white,
       ),
       home: Home(),
     );
