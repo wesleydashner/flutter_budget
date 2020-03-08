@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   final user = User(accounts: <Account>[
-    Account(name: 'Investments', amount: 0),
-    Account(name: 'Usable', amount: 141.39),
-    Account(name: 'Taxes', amount: 42.5),
+    Account(name: 'investments', amount: 0),
+    Account(name: 'usable', amount: 141.39),
+    Account(name: 'taxes', amount: 42.5),
   ]);
 
   @override
@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Accounts'),
+        title: Text('accounts'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
