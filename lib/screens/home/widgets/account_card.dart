@@ -1,5 +1,7 @@
 import 'package:budget/models/account.dart';
+import 'package:budget/screens/home/widgets/money_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class AccountCard extends StatelessWidget {
@@ -78,9 +80,7 @@ class _AccountCard extends StatelessWidget {
   void _addPressed(BuildContext context) async {
     final v = await _createAlertDialog('add', context);
     if (v != null) {
-      debugPrint('old amount: ${account.amount}');
       account.amount += double.parse(v);
-      debugPrint('new amount: ${account.amount}');
     }
   }
 
@@ -92,7 +92,8 @@ class _AccountCard extends StatelessWidget {
   }
 
   Future<String> _createAlertDialog(String title, BuildContext context) {
-    TextEditingController textEditingController = TextEditingController();
+    TextEditingController textEditingController =
+        TextEditingController(text: '0.00');
 
     return showDialog(
         context: context,
@@ -100,7 +101,10 @@ class _AccountCard extends StatelessWidget {
           return AlertDialog(
             title: Text(title),
             content: TextField(
+              autofocus: true,
+              keyboardType: TextInputType.number,
               controller: textEditingController,
+              inputFormatters: <TextInputFormatter>[MoneyTextInputFormatter()],
             ),
             actions: <Widget>[
               FlatButton(
