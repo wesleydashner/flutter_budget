@@ -14,10 +14,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     var accountCards = <Widget>[];
     for (final account in user.accounts) {
-      accountCards.add(AccountCard(
-        name: account.name,
-        amount: account.amount,
-      ));
+      accountCards.add(AccountCard(account: account));
       accountCards.add(Divider(height: 0));
     }
     return Scaffold(

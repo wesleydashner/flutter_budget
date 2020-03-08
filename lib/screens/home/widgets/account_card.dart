@@ -1,12 +1,11 @@
+import 'package:budget/models/account.dart';
 import 'package:flutter/material.dart';
 
 class AccountCard extends StatelessWidget {
-  final String name;
-  final double amount;
+  final Account account;
 
   AccountCard({
-    @required this.name,
-    @required this.amount,
+    @required this.account,
   });
 
   @override
@@ -20,7 +19,7 @@ class AccountCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Text(
-                name,
+                account.name,
                 style: TextStyle(fontSize: 16),
               ),
             ],
@@ -40,7 +39,8 @@ class AccountCard extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Text(amount.toStringAsFixed(2), style: TextStyle(fontSize: 48)),
+            Text(account.amount.toStringAsFixed(2),
+                style: TextStyle(fontSize: 48)),
             Spacer(),
             Container(
               height: buttonWidth,
