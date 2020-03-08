@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   final user = User(accounts: <Account>[
-    Account(name: 'investments', amount: 0),
-    Account(name: 'usable', amount: 141.39),
-    Account(name: 'taxes', amount: 42.5),
+    Account(name: 'investments'),
+    Account(name: 'usable'),
+    Account(name: 'taxes'),
   ]);
 
   @override

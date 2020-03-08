@@ -1,14 +1,24 @@
-class Account {
+import 'package:flutter/material.dart';
+
+class Account extends ChangeNotifier {
   final String name;
-  final double amount;
+  var _amount = 0.0;
 
   Account({
-    this.name,
-    this.amount,
+    @required this.name,
   });
+
+  set amount(double v) {
+    if (v != _amount) {
+      _amount = v;
+      notifyListeners();
+    }
+  }
+
+  get amount => _amount;
 
   @override
   String toString() {
-    return 'Account{name: $name, amount: $amount}';
+    return 'Account{name: $name, amount: $_amount}';
   }
 }

@@ -1,10 +1,27 @@
 import 'package:budget/models/account.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AccountCard extends StatelessWidget {
   final Account account;
 
   AccountCard({
+    @required this.account,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => account,
+      child: _AccountCard(account: account),
+    );
+  }
+}
+
+class _AccountCard extends StatelessWidget {
+  final Account account;
+
+  _AccountCard({
     @required this.account,
   });
 
@@ -39,8 +56,10 @@ class AccountCard extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Text(account.amount.toStringAsFixed(2),
-                style: TextStyle(fontSize: 48)),
+            Consumer<Account>(
+                builder: (context, account, child) => Text(
+                    account.amount.toStringAsFixed(2),
+                    style: TextStyle(fontSize: 48))),
             Spacer(),
             Container(
               height: buttonWidth,
@@ -59,14 +78,16 @@ class AccountCard extends StatelessWidget {
   void _addPressed(BuildContext context) async {
     final v = await _createAlertDialog('add', context);
     if (v != null) {
-      debugPrint('add $v');
+      debugPrint('old amount: ${account.amount}');
+      account.amount += double.parse(v);
+      debugPrint('new amount: ${account.amount}');
     }
   }
 
   void _subtractPressed(BuildContext context) async {
     final v = await _createAlertDialog('subtract', context);
     if (v != null) {
-      debugPrint('subtract $v');
+      account.amount -= double.parse(v);
     }
   }
 
