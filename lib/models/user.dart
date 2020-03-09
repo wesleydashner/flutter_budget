@@ -25,4 +25,15 @@ class User extends ChangeNotifier {
     this.accounts.add(Account(name: name, databaseId: id));
     notifyListeners();
   }
+
+  bool removeAccount(int databaseId) {
+    for (var i = 0; i < accounts.length; i++) {
+      if (accounts[i].databaseId == databaseId) {
+        accounts.removeAt(i);
+        db.delete(databaseId);
+        return true;
+      }
+    }
+    return false;
+  }
 }

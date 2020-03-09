@@ -20,7 +20,13 @@ class _Home extends StatelessWidget {
 
     var accountCards = <Widget>[];
     for (final account in user.accounts) {
-      accountCards.add(AccountCard(account: account));
+      accountCards.add(Dismissible(
+        child: AccountCard(account: account),
+        key: Key(account.databaseId.toString()),
+        onDismissed: (direction) {
+          user.removeAccount(account.databaseId);
+        },
+      ));
       accountCards.add(Divider(height: 0));
     }
     return Scaffold(
