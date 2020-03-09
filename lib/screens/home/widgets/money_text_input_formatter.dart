@@ -6,8 +6,6 @@ class MoneyTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    debugPrint('oldValue: ${oldValue.text}');
-    debugPrint('newValue: ${newValue.text}');
     // if backspace
     if (oldValue.text.substring(0, oldValue.text.length - 1) == newValue.text &&
         oldValue.text != '0.00') {
