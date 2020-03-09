@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+// https://medium.com/@suragch/simple-sqflite-database-example-in-flutter-e56a5aaa3f91
 class DatabaseHelper {
   static final _databaseName = 'budget.db';
   static final _databaseVersion = 1;
@@ -37,7 +38,7 @@ class DatabaseHelper {
           CREATE TABLE $table (
             $columnId INTEGER PRIMARY KEY,
             $columnName TEXT NOT NULL,
-            $columnAmount FLOAT NOT NULL,
+            $columnAmount FLOAT NOT NULL
           )
           ''');
   }

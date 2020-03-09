@@ -13,15 +13,16 @@ class User extends ChangeNotifier {
   void userConstructor() async {
     List<Map<String, dynamic>> fromDB = await db.queryAllRows();
     for (final row in fromDB) {
-      final account = Account(name: row['name']);
+      final account = Account(name: row['name'], databaseId: row['id']);
       account.amount = row['amount'];
       accounts.add(account);
     }
+    notifyListeners();
   }
 
-  void addAccount(String name) {
-    this.accounts.add(Account(name: name));
-    db.insert({'name': name, 'amount': 0});
+  void addAccount(String name) async {
+    final id = await db.insert({'name': name, 'amount': 0});
+    this.accounts.add(Account(name: name, databaseId: id));
     notifyListeners();
   }
 }

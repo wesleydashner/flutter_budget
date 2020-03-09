@@ -27,15 +27,10 @@ class _Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('accounts'),
         backgroundColor: Theme.of(context).primaryColor,
-        actions: <Widget>[
-          FlatButton(
-            child: Icon(
-              Icons.add,
-              color: Theme.of(context).secondaryHeaderColor,
-            ),
-            onPressed: () => _addAccount(user, context),
-          )
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _addAccount(user, context),
       ),
       body: SingleChildScrollView(
         child: Column(
