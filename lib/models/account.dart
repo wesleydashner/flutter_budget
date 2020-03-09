@@ -1,3 +1,4 @@
+import 'package:budget/database/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class Account extends ChangeNotifier {
@@ -11,6 +12,8 @@ class Account extends ChangeNotifier {
   set amount(double v) {
     if (v != _amount) {
       _amount = v;
+      final db = DatabaseHelper.instance;
+      db.update({'name': name, 'amount': v});
       notifyListeners();
     }
   }

@@ -39,4 +39,4 @@ lib/generated_plugin_registrant.dart
 # Custom
 pubspec.lock
 xcshareddata/
-
+podfile.lock
