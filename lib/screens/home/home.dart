@@ -40,7 +40,7 @@ class _Home extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[...accountCards],
+          children: accountCards,
         ),
       ),
     );
